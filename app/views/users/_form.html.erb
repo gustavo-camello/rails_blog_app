@@ -1,7 +1,5 @@
 <%= render 'shared/errors', obj: @user %>
 
-<h1>Sign up</h1>
-
 <%= form_with(model: @user, local: true) do |f| %>
   <p>
     <%= f.label :username %><br>
@@ -19,7 +17,7 @@
   </p>
 
   <p>
-    <%= f.submit "Sign up" %>
+    <%= f.submit(@user.new_record? ? "Sign up" : "Update Account") %>
   </p>
 
 <% end %>
