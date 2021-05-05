@@ -1,11 +1,4 @@
-<% if @article.errors.any? %>
-  <h3>Fail to create new article</h3>
-    <ul>
-      <% @article.errors.full_messages.each do |m| %>
-        <li><%= m %></li>
-      <% end %>
-    </ul>
-<% end %>
+<%= render 'shared/errors', obj: @article %>
 
 <%= form_with(model: @article, local: true) do |f| %>
   <p>
