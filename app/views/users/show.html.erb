@@ -2,6 +2,10 @@
 
 <%= gravatar_for @user, size: 200 %>
 
+<div>
+  <%= link_to "Edit your profile", edit_user_path(@user) %>
+</div>
+
 <h1 class="text-center"><%= @user.username %>'s articles</h1>
 
 <%= render 'articles/article' %>

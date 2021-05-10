@@ -1,6 +1,7 @@
 <h1>Showing article details</h1>
 
-<p>User: Teste </p>
+<p>User: <%= @article.user.username if @article.user %> </p>
+  <%= link_to gravatar_for(@article.user), user_path(@article.user) if @article.user%>
 <p>Title: <%= @article.title %> </p>
 <p>Description: <%= @article.description %></p>
 
