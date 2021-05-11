@@ -17,9 +17,13 @@
         <td><%= link_to gravatar_for(user, size: 150), user %></th>
         <td><%= pluralize(user.articles.count, "article") %></td>
         <td><%= link_to 'Show Profile', user_path(user) %></td>
-        <% if logged_in? && user == current_user %>
-          <td><%= link_to 'Edit Profile', edit_user_path(user) %></td>
-          <td><%= link_to 'Delete Profile', user_path(user), method: :delete, data: { confirm: "Are you sure? " } %> </th>
+        <% if logged_in? %>
+          <% if user == current_user %>
+            <td><%= link_to 'Edit Profile', edit_user_path(user) %></td>
+          <% end %>
+          <% if current_user.admin? %>
+            <td><%= link_to 'Delete Profile', user_path(user), method: :delete, data: { confirm: "Are you sure? " } %> </th>
+          <% end %>
         <% end %>
         <td>Joined <%= time_ago_in_words(user.created_at) %> ago</td>
       <tr>
