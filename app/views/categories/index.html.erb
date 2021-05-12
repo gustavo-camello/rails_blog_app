@@ -1,0 +1,20 @@
+<h1>Listing all Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created at</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, category_path(category) %></td>
+        <td><%= time_ago_in_words(category.created_at)%> ago, edited <%= time_ago_in_words(category.updated_at) %></td>
+      <tr>
+    <% end %>
+  </tbody>
+
+</table>
