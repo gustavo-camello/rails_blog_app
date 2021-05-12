@@ -2,6 +2,9 @@
 
 <p>User: <%= @article.user.username if @article.user %> </p>
   <%= link_to gravatar_for(@article.user), user_path(@article.user) if @article.user%>
+  <% if @article.categories.any? %>
+    <%= render @article.categories %>
+  <% end %>
 <p>Title: <%= @article.title %> </p>
 <p>Description: <%= @article.description %></p>
 
