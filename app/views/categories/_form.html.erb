@@ -1,0 +1,11 @@
+<%= form_with(model: @category, local: true) do |f| %>
+  <p>
+    <%= f.label :name, "Category Name" %><br>
+    <%= f.text_field :name, placeholder: "Enter the name" %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

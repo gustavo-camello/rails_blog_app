@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Articles</th>
       <th>Created at</th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= link_to category.name, category_path(category) %></td>
+        <th><%= pluralize(category.articles.count, "article") %></th>
         <td><%= time_ago_in_words(category.created_at)%> ago, edited <%= time_ago_in_words(category.updated_at) %></td>
       <tr>
     <% end %>
