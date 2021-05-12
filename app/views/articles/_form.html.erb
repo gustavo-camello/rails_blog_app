@@ -12,6 +12,12 @@
   </p>
 
   <p>
+    <%= f.label :category %><br>
+    <%= f.collection_select(:category_ids, Category.all, :id, :name, { prompt: "make your selection"},
+    { multiple: true, size: 3, class: "custom-select" }) %>
+  </p>
+
+  <p>
     <%= f.submit %>
   </p>
 
