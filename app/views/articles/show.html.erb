@@ -8,9 +8,42 @@
 <p>Title: <%= @article.title %> </p>
 <p>Description: <%= @article.description %></p>
 
-<% if logged_in? && @article.user == current_user || current_user.admin? %>
+<% if logged_in? && @article.user == current_user || logged_in? && current_user.admin? %>
   <%= link_to 'Edit', edit_article_path(@article) %> | 
   <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure? " } %> | 
 <% end %>
+
+<% if logged_in? %>
+  <div class="container">
+    <h2>Add Comments</h2>
+    <%= form_with model: [ @article, @article.comments.build ] do | f |%>
+      <p>
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment %>
+      </p>
+
+      <p>
+        <%= f.label "Username" %><br>
+        <%= f.text_field :commenter, value: current_user.username, :readonly => true %>
+      </p>
+
+      <p>
+        <%= f.submit %>
+      </p>
+
+    <% end %>
+  </div>
+<% end %>
+
+<div>
+  <h2>Comments: </h2>
+  <% @article.comments.each do |comment| %>
+    <li><%= comment.comment %> - <%= comment.commenter %>
+      <% if logged_in? && @article.user == current_user || logged_in? && current_user.admin? %>
+        <%= link_to 'Delete', "/articles/#{@article.id}/comments/#{comment.id}", method: :delete, data: { confirm: "Are you sure? " } %>
+      <% end %>
+    </li>
+  <% end %>
+</div>
 
 <%= link_to 'Return to articles listing', articles_path %>
